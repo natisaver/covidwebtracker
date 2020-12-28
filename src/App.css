@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #f5f6fa;
+}
+
+.app {
+  display: flex;
+  justify-content: space-evenly; /* in the middle of each 2 sections vs extreme end space-between */
+  padding: 20px;
+}
+
+.app__header {
+  display: flex;
+  justify-content: space-between; /* maximise space horizontally for content */
+  align-items: center; /* centres the items vertically within flex box */
+  margin-bottom: 10px;
+}
+
+.app__left {
+  flex:0.9; /* use 90% of width */
+}
+
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__stats .active__cases {
+  color: rgb(153, 5, 5);
+}
+
+.app__stats .active__total {
+  color: #be0303;
+  font-weight: 700 !important;
+  margin-top: 7px !important;
+  font-size: 0.8rem !important;
+}
+
+/* media query for responsiveness */
+/* if less than 990px width then turn into column */
+@media (max-width: 990px) {
+  .app{
+    flex-direction: column;
+  }
+}

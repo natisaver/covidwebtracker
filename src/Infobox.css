@@ -1,0 +1,19 @@
+.infoBox {
+    flex: 1;
+}
+
+.infoBox:not(:last-child) {
+    margin-right: 15px;
+}
+
+.infoBox__cases {
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.infoBox__total {
+    font-weight: 700 !important;
+    margin-top: 5px !important;
+    font-size: 0.8rem !important;
+} /* important! overrides material ui */
