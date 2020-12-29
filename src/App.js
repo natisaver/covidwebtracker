@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import Infobox from './InfoBox';
 import Active from './Active';
-import Map from './Map';
+import {Map, ChangeMap} from './Map';
 import Table from './Table';
 import {sortData, prettyStats, prettyStats2} from './util';
 import LineGraph from './LineGraph';
@@ -97,8 +97,8 @@ function App() {
           setMapZoom(2);
         } else {
           setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-          setMapZoom(4);
-          console.log('gay')
+          setMapZoom(3);
+          console.log('map updated')
         }
       })
   };
