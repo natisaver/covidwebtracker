@@ -17,19 +17,20 @@
     color: #555;
 }
 
-.info-flag {
-    height: 90px;
+.info-container {
     width: 150px;
+  }
+  
+.info-flag {
+    height: 80px;
+    width: 100%;
     background-size: cover;
     border-radius: 8px;
 }
 
 .info-flag img {
-    max-height: 100%;
-    width: 100%;
+    width: 100px;
     border-radius: 5px;
-    display: block;
-    margin: auto;
 }
 
 .info-cases,

@@ -7,8 +7,9 @@ import {
   CardContent
 } from '@material-ui/core';
 import Infobox from './InfoBox';
+import Infobox2 from './InfoBox2';
 import Active from './Active';
-import {Map, ChangeMap} from './Map';
+import Map from './Map';
 import Table from './Table';
 import {sortData, prettyStats, prettyStats2} from './util';
 import LineGraph from './LineGraph';
@@ -79,7 +80,6 @@ function App() {
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
 
-
     const url = 
       countryCode === 'worldwide' 
         ? "https://disease.sh/v3/covid-19/all" 
@@ -133,11 +133,11 @@ function App() {
 
         <div className="app__stats">
           {/* Infoboxes covid cases*/}
-          <Infobox title='Coronavirus Cases' cases={prettyStats(countryInfo.todayCases)} total={prettyStats2(countryInfo.cases)}/>
+          <Infobox isActive={casesType==='cases'} onClick={e=>setCasesType('cases')} title='Coronavirus Cases' cases={prettyStats(countryInfo.todayCases)} total={prettyStats2(countryInfo.cases)}/>
           {/* Infoboxes covid recovered*/}
-          <Infobox title='Recovered' cases={prettyStats(countryInfo.todayRecovered)} total={prettyStats2(countryInfo.recovered)}/>
+          <Infobox isGreen isActive={casesType==='recovered'} onClick={e=>setCasesType('recovered')} title='Recovered' cases={prettyStats(countryInfo.todayRecovered)} total={prettyStats2(countryInfo.recovered)}/>
           {/* Infoboxes covid deaths*/}  
-          <Infobox title='Deaths' cases={prettyStats(countryInfo.todayDeaths)} total={prettyStats2(countryInfo.deaths)}/>
+          <Infobox isOrange isActive={casesType==='deaths'} onClick={e=>setCasesType('deaths')} title='Deaths' cases={prettyStats(countryInfo.todayDeaths)} total={prettyStats2(countryInfo.deaths)}/>
           <Active title='Active⚠️' cases={prettyStats2(countryInfo.active)} total ={prettyStats2(countryInfo.critical)}/>
         
         </div>      
@@ -165,15 +165,21 @@ function App() {
       <Card className="app__right">
         <CardContent>
           {/* Table */}
-          <h3>cases by country</h3>
+          <h3>🌐 Cases by Country</h3>
           <Table countries={tableData}/>
           {/* Graph */}
-          <h3>werldwide new cases</h3>
-          <LineGraph />
+          <h3>🌎 Werldwide: new {casesType}</h3>
+          <LineGraph casesType={casesType}/>
+          <div className="credits">
+            <a href="https://natisaver.github.io/trashcv/" className="credit">by nat :D 💩</a>
+          </div>
+            
         </CardContent>
 
-
+        
       </Card>
+      
+    
 
     </div>
   );

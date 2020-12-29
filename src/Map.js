@@ -27,5 +27,7 @@ function Map({countries,casesType,center,zoom}) {
     )
 }
 
+
+
 export default Map
-export default ChangeMap
+

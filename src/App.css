@@ -46,3 +46,31 @@ body {
     flex-direction: column;
   }
 }
+
+.covidcasebox {
+  color: aquamarine !important;
+}
+
+.credits {
+  display: relative !important;
+  color: black;
+  text-align: right;
+  bottom: 0 !important;
+  right: 0 !important;
+  margin-top: 30px;
+}
+
+.credit{
+  background-color: rgb(131, 112, 112);
+  text-decoration: none;
+  color: white;
+  border: 2px solid black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.credit:hover {
+  color: pink;
+}

@@ -32,7 +32,7 @@ const options = {
         }],
         yAxes: [{
             gridLines: {
-                display:     false,
+                display: true,
             },
             ticks: {
                 callback:function (value,index,values) {
@@ -43,16 +43,18 @@ const options = {
     }
 }
 
+//cases type value is decided by the state in app.js
+
 function LineGraph({ casesType = 'cases'}) {
     const [data, setData] = useState({});
 
     //updating datapoint for a case type (either case,death or recovered)
     const buildChartData = (data, casesType='cases') => {
         const chartData = [];
-        let lastDataPoint;
+        let lastDataPoint; //set it as lastDataPoint
 
         for(let date in data.cases) {
-            if (lastDataPoint) {
+            if (lastDataPoint) { //it was alr let lastDataPoint
                 const newDataPoint = {
                     x: date,
                     y: data[casesType][date] - lastDataPoint //take cases new - old
@@ -79,19 +81,33 @@ function LineGraph({ casesType = 'cases'}) {
         fetchData();
     }, [casesType])
 
-    
+    //color code
+    const colorByTypes = {
+        cases: {
+          background: "rgba(204,16,52,0.5)",
+          border: "#cc1034",
+        },
+        deaths: {
+          background: "#d19c4c",
+          border: "#9d5f38",
+        },
+        recovered: {
+          background: "rgba(125, 215, 29,0.5)",
+          border: "#7dd71d",
+        },
+      };   
 
     return (
         <div>
-            {data?.length > 0 &&( //optional chaining
+            {data?.length > 0 && ( //optional chaining
              <Line
                 options = {options}
                 data={{
                     datasets:[
                         {
                             data: data,
-                            backgroundColor: "rgba(204,16,52,0.5)",
-                            borderColor: "CC1034",
+                            backgroundColor: colorByTypes[casesType].background,
+                            borderColor: colorByTypes[casesType].border,
                         }
                     ]
                 }}
