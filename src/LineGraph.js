@@ -56,7 +56,7 @@ function LineGraph({ casesType = 'cases'}) {
         const chartData = [];
         let lastDataPoint; //create lastDataPoint "let" variable: only be used in this block (let/var/const)
 
-        for(let date in data.cases) { //for x in y (date is x, data[casesType] is y)
+        for(let date in data[casesType]) { //for x in y (date is x, data[casesType] is y)
             if (lastDataPoint) { //let lastDataPoint is undefined, so this wont execute until lastDataPoint = a value
                 const newDataPoint = {
                     x: date,
