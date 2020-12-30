@@ -56,12 +56,14 @@ function App() {
       .then((response) => response.json()) //get the json
 
       .then((data) => {
-        const countries = data.map((country) => ( //using map to reformat objects in array: gives us an array of name & value by mapping countries
+        const countries = data.map((n) => ( //storing in const countries, we using map to reformat each object in array denoted by n, into {new array format}
           {
-            name: country.country, //country name
-            value: country.countryInfo.iso2 //country code
+            name: n.country, //country name
+            value: n.countryInfo.iso2 //country code
           }
         ))
+          //so const countries = [{name:'singapore', value:'SG'},{name:'unitedstates',value:'US'}]
+
 
         const sortedData = sortData(data); //sortData func frm util for table
         
@@ -116,18 +118,16 @@ function App() {
           <h1>COVID-19 Cases Summary</h1>
           <FormControl className="app__dropdown"> {/* BEM naming convention, component, then element */}
             <Select variant="outlined" onChange={onCountryChange} value={selectedCountry}>
-              {/* Loop through all countries and show dropdown for each 
-              for every country return menu item*/}
-
-
+              {/* drop down style, when change=>do onCountryChange*/}
+              
+              {/* looping thru all options with country name */}
               <MenuItem value='worldwide'>Worldwide</MenuItem>
               {
-                countries.map(country => (
-                  <MenuItem value={country.value}>{country.name}</MenuItem>
+                countries.map(y => (
+                  <MenuItem value={y.value}>{y.name}</MenuItem>
                 ))
               }
-            {/* ES6 notation, => is return 
-            map is like a for loop*/}
+            {/* so here countries.map={<menuitem1/>,<menuitem2/>.....} as dropdown options */}
             </Select>
 
           </FormControl>  
