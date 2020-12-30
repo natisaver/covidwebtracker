@@ -22,7 +22,7 @@ function App() {
  // {} is obj, [] is array
 
   const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState('worldwide');
+  const [selectedCountry, setSelectedCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({}); 
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({ lat: 1.29, lng: 103});
@@ -89,7 +89,7 @@ function App() {
       .then(response => response.json())
 
       .then((data) => {
-        setCountry(countryCode);
+        setSelectedCountry(countryCode);
         setCountryInfo(data);
 
         if (countryCode === "worldwide") {
@@ -113,7 +113,7 @@ function App() {
         <div className="app__header">
           <h1>COVID-19 Cases Summary</h1>
           <FormControl className="app__dropdown"> {/* BEM naming convention, component, then element */}
-            <Select variant="outlined" onChange={onCountryChange} value={country}>
+            <Select variant="outlined" onChange={onCountryChange} value={selectedCountry}>
               {/* Loop through all countries and show dropdown for each 
               for every country return menu item*/}
 
