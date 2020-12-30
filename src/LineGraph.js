@@ -82,7 +82,7 @@ function LineGraph({ casesType = 'cases'}) {
 
         fetchData();
 
-    }, [casesType])
+    }, [casesType]) //this array here means if casesType changes, the useEffect hook runs again, if empty array, it runs once
 
     //color code constant
     const colorByTypes = {
