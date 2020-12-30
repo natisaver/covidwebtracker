@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Line} from "react-chartjs-2";
 import numeral from "numeral";
 
+/***LINEGRAPH OPTIONS***/
 const options = {
     legend: {
         display: false,
@@ -43,21 +44,23 @@ const options = {
     }
 }
 
-//cases type value is decided by the state in app.js
+/***LINEGRAPH COMPONENT***/
+//{casesType} is decided by the setState in app.js => "cases" (default), "deaths" or "recovered"
 
 function LineGraph({ casesType = 'cases'}) {
+    //data state
     const [data, setData] = useState({});
 
-    //updating datapoint for a case type (either case,death or recovered)
+    //creating func to update datapoint for a case type (either case,death or recovered)
     const buildChartData = (data, casesType='cases') => {
         const chartData = [];
-        let lastDataPoint; //set it as lastDataPoint
+        let lastDataPoint; //create lastDataPoint "let" variable: only be used in this block (let/var/const)
 
-        for(let date in data.cases) {
-            if (lastDataPoint) { //it was alr let lastDataPoint
+        for(let date in data.cases) { //for x in y (date is x, data[casesType] is y)
+            if (lastDataPoint) { //let lastDataPoint is undefined, so this wont execute until lastDataPoint = a value
                 const newDataPoint = {
                     x: date,
-                    y: data[casesType][date] - lastDataPoint //take cases new - old
+                    y: data[casesType][date] - lastDataPoint //take no of cases new - old
                 }
             chartData.push(newDataPoint); 
             }
@@ -66,7 +69,7 @@ function LineGraph({ casesType = 'cases'}) {
         return chartData
     }
 
-    //getting data from api
+    //getting data from api using buildChartData function
     useEffect(()=>{
         const fetchData = async () => {
             await fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=60')
@@ -77,11 +80,11 @@ function LineGraph({ casesType = 'cases'}) {
             })
         }
 
-
         fetchData();
+
     }, [casesType])
 
-    //color code
+    //color code constant
     const colorByTypes = {
         cases: {
           background: "rgba(204,16,52,0.5)",
@@ -96,7 +99,8 @@ function LineGraph({ casesType = 'cases'}) {
           border: "#7dd71d",
         },
       };   
-
+    
+    //return line color
     return (
         <div>
             {data?.length > 0 && ( //optional chaining

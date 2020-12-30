@@ -2,6 +2,7 @@ import React from 'react'
 import numeral from "numeral";
 import {Circle, Popup} from "react-leaflet";
 
+/***COLOUR FOR CIRCLES & MULTIPLIER FOR RADIUS FORMULA BELOW***/
 const casesTypeColors = {
     cases: {
       multiplier: 800,
@@ -17,6 +18,7 @@ const casesTypeColors = {
     },
   };
 
+  /***SORTING DATA IN DESCENDING ORDER***/
 export const sortData = (data) => {
     let sortedData = [...data];
     // ... is spread syntax, here we use for array literal
@@ -27,6 +29,7 @@ export const sortData = (data) => {
 };
     //.sort arranges in ascending order
     //but here we give sort order of a>b, so descending
+    //A>B RETURN FALSE, ELSE B>A RETURN TRUE
 
 
     /* sortedData.sort((a, b) => {
@@ -40,12 +43,16 @@ export const sortData = (data) => {
 
 } */
 
+
+/***NUMERAL TO ADJUST STATS FORMATTING & LOOKS***/
 export const prettyStats = (stat) =>
     stat ? `+${numeral(stat).format("0.0a")}` : "+0";
 
 export const prettyStats2 = (stat) =>
     stat ? `${numeral(stat).format("0.0a")}` : "0";
 
+
+/****SHOWDATAONMAP CIRCLE & POPUP => looped in map.js****/
 export const showDataOnMap = (data, casesType ='cases') => 
     data.map(country => (
         <Circle
@@ -56,6 +63,7 @@ export const showDataOnMap = (data, casesType ='cases') =>
                 Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier / 2
             }
             >
+            
             <Popup>
                 <div className="info-container">
                     <div
