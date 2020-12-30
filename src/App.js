@@ -33,7 +33,7 @@ function App() {
  // USEEFFECT hook = runs a piece of code based on the given condition
  // ()=>{} arrow function
 
- //this first useeffect is to load all countryInfo on launch
+ //load countryInfo on launch
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
     .then(response=> response.json())
@@ -42,7 +42,7 @@ function App() {
     })
   }, [])
 
- //for dropdown & table on launch 
+ //load specificCountryInfo for dropdown & table on launch 
   useEffect(() => {
 
     //code here runs whenever component renders & not again
@@ -77,6 +77,7 @@ function App() {
 
   }, []);
 
+  //on country change in dropdown
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
 
