@@ -60,7 +60,7 @@ function LineGraph({ casesType = 'cases'}) {
             if (lastDataPoint) { //let lastDataPoint is undefined, so this wont execute until lastDataPoint = a value
                 const newDataPoint = {
                     x: date,
-                    y: data[casesType][date] - lastDataPoint //take no of cases new - old
+                    y: data[casesType][date] - lastDataPoint //take no. of cases (new date) - no .of cases (date - 1 day)
                 }
             chartData.push(newDataPoint); 
             }
