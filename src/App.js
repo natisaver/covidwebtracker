@@ -63,10 +63,11 @@ function App() {
           }
         ))
 
-        const sortedData = sortData (data);
-        setTableData(sortedData);
-        setMapCountries(data); //all country info
-        setCountries(countries);
+        const sortedData = sortData(data); //sortData func frm util for table
+        
+        setTableData(sortedData); //sorted country case for tables
+        setMapCountries(data); //all country info, including name and iso2 => for showDataOnMap
+        setCountries(countries);//only name and iso2 => for menuItem
 
 
       })
