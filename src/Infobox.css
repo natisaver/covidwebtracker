@@ -41,3 +41,7 @@
 .infoBox--orange {
     color: #d19c4c !important;
 }
+
+.app__stats .MuiPaper-root {
+    color: rgb(153, 5, 5) !important;
+}

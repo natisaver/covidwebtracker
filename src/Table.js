@@ -3,6 +3,13 @@ import './Table.css'
 import {prettyStats2} from './util';
 import numeral from "numeral";
 
+
+
+
+
+
+
+
 function Table({countries}) {
     return (
         <div className='table'>

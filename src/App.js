@@ -11,7 +11,8 @@ import Infobox2 from './InfoBox2';
 import Active from './Active';
 import Map from './Map';
 import Table from './Table';
-import {sortData, prettyStats, prettyStats2} from './util';
+import BasicTable from './Table2';
+import {sortData, sortAscData, prettyStats, prettyStats2} from './util';
 import LineGraph from './LineGraph';
 import './App.css';
 import "leaflet/dist/leaflet.css";
@@ -65,7 +66,8 @@ function App() {
           //so const countries = [{name:'singapore', value:'SG'},{name:'unitedstates',value:'US'}]
 
 
-        const sortedData = sortData(data); //sortData func frm util for table
+        const sortedData = sortData(data); //sortData func frm util for table in desc
+        const sortedData2 = sortAscData(data); //data in asc order
         
         setTableData(sortedData); //sorted country case for tables
         setMapCountries(data); //all country info, including name and iso2 => for showDataOnMap
@@ -95,13 +97,14 @@ function App() {
       .then((data) => {
         setSelectedCountry(countryCode);
         setCountryInfo(data);
-
+        
+        /* shifting map on country select */
         if (countryCode === "worldwide") {
           setMapCenter([34.80746, -40.4796]);
           setMapZoom(2);
         } else {
           setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-          setMapZoom(3);
+          setMapZoom(5);
           console.log('map updated')
         }
       })
@@ -159,6 +162,8 @@ function App() {
       casesType={casesType}
       center={mapCenter}
       zoom={mapZoom}
+      /* highlight circle on select */
+      selectedCountry={selectedCountry}
       />
 
 
@@ -168,7 +173,7 @@ function App() {
         <CardContent>
           {/* Table */}
           <h3>🌐 Cases by Country</h3>
-          <Table countries={tableData}/>
+          <BasicTable countries={tableData}/>
           {/* Graph */}
           <h3>🌎 Werldwide: new {casesType}</h3>
           <LineGraph casesType={casesType}/>

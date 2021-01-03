@@ -2,19 +2,23 @@ import React from 'react'
 import numeral from "numeral";
 import {Circle, Popup} from "react-leaflet";
 
+
 /***COLOUR FOR CIRCLES & MULTIPLIER FOR RADIUS FORMULA BELOW***/
 const casesTypeColors = {
     cases: {
       multiplier: 800,
       option: { color:"#cc1034", fillColor: "#cc1034" },
+      highlight: { color:"#000000", fillColor: "#cc1034" },
     },
     recovered: {
       multiplier: 1200,
       option: { color:"#7dd71d", fillColor: "#7dd71d" },
+      highlight: { color:"#000000", fillColor: "#cc1034" },
     },
     deaths: {
       multiplier: 2000,
-      option: { color:"#ff6c47", fillColor: "#ff6c47" }
+      option: { color:"#ff6c47", fillColor: "#ff6c47" },
+      highlight: { color:"#000000", fillColor: "#cc1034" }
     },
   };
 
@@ -25,6 +29,15 @@ export const sortData = (data) => {
     //adds all elements of data into sortData
 
     sortedData.sort((a, b) => a.cases>b.cases ? -1 : 1);
+    return sortedData;
+};
+
+export const sortAscData = (data) => {
+    let sortedData = [...data];
+    // ... is spread syntax, here we use for array literal
+    //adds all elements of data into sortData
+
+    sortedData.sort((a, b) => a.cases<b.cases ? -1 : 1);
     return sortedData;
 };
     //.sort arranges in ascending order
@@ -53,12 +66,16 @@ export const prettyStats2 = (stat) =>
 
 
 /****SHOWDATAONMAP CIRCLE & POPUP => looped in map.js****/
-export const showDataOnMap = (data, casesType ='cases') => 
+export const showDataOnMap = (data, casesType ='cases', selectedCountry) => 
     data.map(country => (
         <Circle
             center={[country.countryInfo.lat, country.countryInfo.long]}
             fillOpacity={0.4}
-            pathOptions={casesTypeColors[casesType].option}
+            pathOptions={country.countryInfo.iso2 === selectedCountry
+                            ? casesTypeColors[casesType].highlight /* if selectedCountry then highlight circle! */
+                            : casesTypeColors[casesType].option
+            }   
+            
             radius = {
                 Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier / 2
             }

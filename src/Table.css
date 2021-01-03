@@ -1,12 +1,32 @@
 .table {
     margin-top: 20px;
-    overflow: scroll;
-    height: 400px;
+    overflow: scroll !important;
+    height: 400px !important;
     margin-bottom: 20px;
-    color: #6a5d5d;
+    color: #6a5d5d!important;
 }
 
-/* responsive column */
+/* FOR TABLE2.JS */
+.sike {
+    background-color: #6a5d5d !important;
+    border-bottom: 1px solid rgba(224, 224, 224, 1) !important;
+}
+
+.sike .MuiTableCell-root {
+    border-bottom: none !important;
+    background-color: #6a5d5d !important;
+}
+
+.MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignRight {
+    padding-top: 14px;
+}
+
+/* SORTING ARROW */
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon {
+    color: #f3f2f8 !important;
+}
+
+/* FOR TABLE.JS not in use=> responsive column */
 .table tr {
     display: flex;
     justify-content: space-between;

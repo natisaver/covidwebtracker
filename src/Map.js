@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Map.css";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, useMap, marker } from "react-leaflet";
 import {showDataOnMap} from "./util";
 
 /* Function to Change Map Center View */
@@ -10,7 +10,8 @@ function ChangeMap({center,zoom}) {
     return null;
 }
 
-function Map({countries,casesType,center,zoom}) {
+
+function Map({countries,casesType,center,zoom,selectedCountry}) {
     return (
         <div className='map'>
           
@@ -21,7 +22,7 @@ function Map({countries,casesType,center,zoom}) {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
                 {/* loop country & draw circles */}
-                {showDataOnMap(countries, casesType)}
+                {showDataOnMap(countries, casesType, selectedCountry)}
             </MapContainer>
         </div>
     )
