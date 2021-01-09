@@ -47,6 +47,12 @@ body {
   }
 }
 
+@media (max-width: 580px) {
+  .app .app__stats {
+    flex-direction: column;
+  }
+}
+
 .covidcasebox {
   color: aquamarine !important;
 }
