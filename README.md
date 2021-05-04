@@ -1,5 +1,11 @@
-# covidwebtracker
-covid-19 api web tracker
+# covidwebtracker 😷🤒
 
-YOU CAN ACCESS THE APP HERE
+## Plugins
+* Material-UI
+* React Leaflet
+* Disease.SH API
+
+## Launch
 https://covid-19-tracker-fd62a.web.app/
+
+
